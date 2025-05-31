@@ -1,4 +1,4 @@
-const SHEET_API_URL = 'https://script.google.com/macros/s/AKfycbz_EKeBwFASPZvK2JvZIAvMU4trgpLZILRed2z4EsU3NIQ8MYAGQu19M1d90nlM8dqOZw/exec'; // Replace with your actual Google Apps Script Web App URL
+const SHEET_API_URL = 'https://script.google.com/macros/s/AKfycbxAvdMiZ-4YfiQ_afZZm91Ql6ijWn6uh_dx32gUavBn7GdB0nyQl1tq3EwHEAVljAaPpg/exec'; // Replace with your actual Google Apps Script Web App URL
 
 // Initialize Leaflet map and place pins from address
 function initMap(locations) {
