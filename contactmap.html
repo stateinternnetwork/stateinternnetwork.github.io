@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Group Contacts</title>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+
+  <!-- DataTables CSS -->
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f5f5f5;
+    }
+    h1 {
+      text-align: center;
+    }
+    #map {
+      height: 400px;
+      width: 100%;
+      margin: 20px 0;
+      border: 1px solid #ccc;
+    }
+    #form-area input {
+      display: block;
+      margin: 8px 0;
+      padding: 6px;
+      width: 100%;
+      max-width: 400px;
+    }
+    #form-area button {
+      padding: 8px 16px;
+      background-color: #3f51b5;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    #form-area {
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Group Contacts</h1>
+
+  <div id="map"></div>
+
+  <table id="contacts-table" class="display">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>First Name</th>
+        <th>Address</th>
+        <th>Telephone</th>
+        <th>Email</th>
+        <th>Job Title</th>
+        <th>Job Category</th>
+        <th>POC</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <div id="form-area">
+    <h3>Add New Contact</h3>
+    <input id="Name" placeholder="Name" />
+    <input id="First Name" placeholder="First Name" />
+    <input id="Address" placeholder="Address" />
+    <input id="Telephone" placeholder="Telephone" />
+    <input id="Email" placeholder="Email" />
+    <input id="Job Title" placeholder="Job Title" />
+    <input id="Job Category" placeholder="Job Category" />
+    <input id="POC" placeholder="POC" />
+    <button onclick="submitContact()">Submit</button>
+  </div>
+
+  <!-- JS libraries -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+
+  <!-- Your separate JS file -->
+  <script src="assets/js/contacts.js"></script>
+
+</body>
+</html>
