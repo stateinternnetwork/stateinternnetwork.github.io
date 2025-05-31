@@ -5,7 +5,11 @@
 <html>
 	<head>
 
-
+		<style>
+		  body {
+		    display: none;
+		  }
+		</style>
 	
 
 		<title>State Intern Alumni Network</title>
@@ -15,6 +19,14 @@
 		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 	</head>
 	<body class="is-preload">
+		
+		<script>
+		  if (sessionStorage.getItem("SIAN_loggedIn") === "true") {
+		    document.body.style.display = "block";
+		  } else {
+		    window.location.href = "index.html";
+		  }
+		</script>
 		
 		<!-- Nav -->
 					<nav id="nav">
