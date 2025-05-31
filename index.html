@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SIAN Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      height: 100vh;
+      align-items: center;
+      justify-content: center;
+    }
+    #loginBox {
+      background: white;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+    input {
+      padding: 10px;
+      margin: 10px 0;
+      width: 100%;
+      max-width: 300px;
+    }
+    button {
+      padding: 10px 20px;
+      background: #3f51b5;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    #error {
+      color: red;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="loginBox">
+    <h2>Welcome to SIAN</h2>
+    <input type="text" id="username" placeholder="Username" /><br>
+    <input type="password" id="password" placeholder="Password" /><br>
+    <button onclick="checkLogin()">Login</button>
+    <div id="error"></div>
+  </div>
+
+  <script>
+    const LOGIN_API = 'https://script.google.com/macros/s/AKfycbx77fzbYvizRgod1E_S7-3QuqdQAW9dZdUzCYRtifJDxrCkV57H__GUpAQrznJRDe9k3w/exec';
+
+    // If already logged in, go directly to overview
+    if (sessionStorage.getItem("SIAN_loggedIn") === "true") {
+      window.location.href = "overview.html";
+    }
+
+    function checkLogin() {
+      const user = document.getElementById("username").value.trim();
+      const pass = document.getElementById("password").value.trim();
+      const errorBox = document.getElementById("error");
+
+      fetch(LOGIN_API)
+        .then(res => res.json())
+        .then(data => {
+          const valid = data.find(entry =>
+            entry.Username === user &&
+            entry.Password === pass &&
+            entry["Access Granted"] === "Yes"
+          );
+
+          if (valid) {
+            sessionStorage.setItem("SIAN_loggedIn", "true");
+            window.location.href = "overview.html";
+          } else {
+            errorBox.innerText = "Access denied. Invalid login.";
+          }
+        })
+        .catch(err => {
+          errorBox.innerText = "Login service unavailable.";
+          console.error(err);
+        });
+    }
+  </script>
+</body>
+</html>
