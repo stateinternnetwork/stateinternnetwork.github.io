@@ -7,7 +7,8 @@
   <style>
     body {
       font-family: "Segoe UI", sans-serif;
-      background: #f4f4f4;
+      background: url('images/bg1.jpg') no-repeat center center fixed;
+      background-size: cover;
       margin: 0;
       padding: 0;
     }
@@ -37,6 +38,12 @@
       font-size: 1.4em;
     }
 
+    .modal-content img {
+      max-width: 150px;
+      margin: 20px auto;
+      display: block;
+    }
+
     .modal-content button {
       margin: 10px;
       padding: 12px 24px;
@@ -46,14 +53,15 @@
       cursor: pointer;
     }
 
+    /* SWITCHED BUTTON COLORS */
     .btn-public {
-      background-color: #ccc;
-      color: black;
+      background-color: #003366;
+      color: white;
     }
 
     .btn-restricted {
-      background-color: #003366;
-      color: white;
+      background-color: #ccc;
+      color: black;
     }
 
     #loginBox {
@@ -91,6 +99,7 @@
   <div id="welcomeModal">
     <div class="modal-content">
       <h2>Welcome to the State Intern Alumni Network – Germany!</h2>
+      <img src="images/logo.png" alt="SIAN Logo" />
       <button class="btn-public" onclick="goPublic()">Public Access</button>
       <button class="btn-restricted" onclick="startRestricted()">Restricted Access</button>
     </div>
@@ -108,8 +117,12 @@
   </div>
 
   <script>
-    const LOGIN_API = 'https://script.google.com/macros/s/AKfycbx77fzbYvizRgod1E_S7-3QuqdQAW9dZdUzCYRtifJDxrCkV57H__GUpAQrznJRDe9k3w/exec'; // Replace this with your actual URL
+    const LOGIN_API = 'https://script.google.com/macros/s/AKfycbx77fzbYvizRgod1E_S7-3QuqdQAW9dZdUzCYRtifJDxrCkV57H__GUpAQrznJRDe9k3w/exec'; // Replace with your actual URL
 
+    // If already logged in, go directly to overview
+    if (sessionStorage.getItem("SIAN_loggedIn") === "true") {
+      window.location.href = "overview.html";
+    }
 
     function goPublic() {
       window.location.href = "welcome.html";
