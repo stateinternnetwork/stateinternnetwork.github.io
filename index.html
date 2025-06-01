@@ -110,10 +110,6 @@
   <script>
     const LOGIN_API = 'https://script.google.com/macros/s/AKfycbx77fzbYvizRgod1E_S7-3QuqdQAW9dZdUzCYRtifJDxrCkV57H__GUpAQrznJRDe9k3w/exec'; // Replace this with your actual URL
 
-    // If already logged in, skip login
-    if (sessionStorage.getItem("SIAN_loggedIn") === "true") {
-      window.location.href = "overview.html";
-    }
 
     function goPublic() {
       window.location.href = "welcome.html";
