@@ -1,6 +1,6 @@
-const SHEET_API_URL = 'https://script.google.com/macros/s/AKfycbxAvdMiZ-4YfiQ_afZZm91Ql6ijWn6uh_dx32gUavBn7GdB0nyQl1tq3EwHEAVljAaPpg/exec'; // Replace with your actual Google Apps Script Web App URL
+const SHEET_API_URL = 'https://script.google.com/macros/s/AKfycbxAvdMiZ-4YfiQ_afZZm91Ql6ijWn6uh_dx32gUavBn7GdB0nyQl1tq3EwHEAVljAaPpg/exec'; // Replace with your actual Web App URL
 
-// Initialize Leaflet map and place pins from address
+// Initialize Leaflet map and place pins by city
 function initMap(locations) {
   const map = L.map('map').setView([51.1657, 10.4515], 6); // Center on Germany
 
@@ -9,21 +9,37 @@ function initMap(locations) {
     attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
 
-  // Geocode each address using Nominatim
+  // Group contacts by city
+  const cityGroups = {};
   locations.forEach(contact => {
-    if (contact.Address) {
-      fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(contact.Address)}`)
-        .then(response => response.json())
-        .then(data => {
-          if (data.length > 0) {
-            const lat = data[0].lat;
-            const lon = data[0].lon;
-            L.marker([lat, lon]).addTo(map)
-              .bindPopup(`${contact["First Name"]} ${contact.Name}<br>${contact.Address}`);
-          }
-        })
-        .catch(error => console.error("Geocoding failed:", error));
+    const city = contact.City?.trim();
+    if (!city) return;
+
+    if (!cityGroups[city]) {
+      cityGroups[city] = [];
     }
+    cityGroups[city].push(contact);
+  });
+
+  // Geocode each city once and add a single marker
+  Object.keys(cityGroups).forEach(city => {
+    fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(city)}&countrycodes=de`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.length > 0) {
+          const lat = data[0].lat;
+          const lon = data[0].lon;
+
+          // Build popup content
+          const people = cityGroups[city]
+            .map(p => `${p["First Name"] || ''} ${p["Name"] || ''}, ${p["Job Category"] || ''}`)
+            .join("<br>");
+
+          L.marker([lat, lon]).addTo(map)
+            .bindPopup(`<strong>${city}</strong><br>${people}`);
+        }
+      })
+      .catch(error => console.error(`Geocoding failed for ${city}:`, error));
   });
 }
 
@@ -52,14 +68,14 @@ function loadContacts() {
 
 // Submit new contact to Google Sheets via POST
 function submitContact() {
-  const fields = ["Name", "First Name", "Address", "Telephone", "Email", "Job Title", "Job Category", "POC"];
+  const fields = ["Name", "First Name", "City", "Job Title", "Job Category", "POC"];
   const data = {};
 
   let valid = true;
   fields.forEach(id => {
     const value = document.getElementById(id).value.trim();
     data[id] = value;
-    if (!value && id !== "POC") { // allow empty POC but not others
+    if (!value && id !== "POC") { // allow empty POC
       valid = false;
     }
   });
@@ -88,7 +104,7 @@ function submitContact() {
     });
 }
 
-// On page load
+// Initialize on page load
 $(document).ready(() => {
   $('#contacts-table').DataTable();
   loadContacts();
