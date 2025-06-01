@@ -3,10 +3,10 @@
 <head>
 
   	<style>
-		  body {
-		    display: none;
-		  }
-		</style>
+	  body {
+	    display: none;
+	  }
+	</style>
   
   <meta charset="UTF-8">
   <title>Network Contacts</title>
@@ -53,7 +53,15 @@
 </head>
 <body>
 
-  <h1>Group Contacts</h1>
+	<script>
+	  if (sessionStorage.getItem("SIAN_loggedIn") === "true") {
+	    document.body.style.display = "block";
+	  } else {
+	    window.location.href = "index.html";
+	  }
+	</script>
+
+  <h1>Network Contacts</h1>
 
   <div id="map"></div>
 
