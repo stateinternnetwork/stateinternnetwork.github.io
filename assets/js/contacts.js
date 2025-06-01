@@ -36,14 +36,12 @@ function loadContacts() {
       table.clear();
       data.forEach(row => {
         table.row.add([
-          row.Name || '',
+          row["Name"] || '',
           row["First Name"] || '',
-          row.Address || '',
-          row.Telephone || '',
-          row.Email || '',
+          row["City"] || '',
           row["Job Title"] || '',
           row["Job Category"] || '',
-          row.POC || ''
+          row["POC"] || ''
         ]);
       });
       table.draw();
