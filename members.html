@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<html>
   <head>
     <title>Members of SIAN</title>
     <meta charset="utf-8" />
@@ -61,44 +61,63 @@
     </style>
   </head>
   <body class="is-preload">
+  <div id="wrapper" class="fade-in">
+    <!-- Header -->
+    <header id="header">
+      <a href="welcome.html" class="logo">SIAN</a>
+    </header>
+
     <!-- Navigation -->
     <nav id="nav">
-      <ul class="links">
-        <li><a href="index.html">Intro</a></li>
-        <li><a href="welcome.html">Overview</a></li>
-        <li><a href="team.html">Team</a></li>
-        <li class="active"><a href="members.html">Members</a></li>
-        <li><a href="projects.html">Projects</a></li>
+	<ul class="links">
+	<li><a href="index.html">Intro</a></li>
+	<li><a href="welcome.html">Overview</a></li>
+	<li><a href="team.html">Team</a></li>
+	<li class="active"><a href="members.html">Members</a></li>
+	<li><a href="projects.html">Projects</a></li>
       </ul>
     </nav>
-      
-    <!-- Main Content -->
-    <span class="date">Germany, 2025</span>
-    <h1>Members of the State Intern Alumni Network</h1>
-    <div class="grid" id="members-grid">
-      <!-- Member tiles will be loaded here -->
+
+    <!-- Login check & display control -->
+    <script>
+      if (sessionStorage.getItem("SIAN_loggedIn") === "true") {
+        document.body.style.display = "block";
+        setTimeout(() => {
+          if (typeof loadContacts === 'function') loadContacts();
+        }, 100);
+      } else {
+        window.location.href = "index.html";
+      }
+    </script>
+
+    <!-- Member Section -->
+    <div id="wrapper" class="fade-in">
+      <div id="main">
+        <section>
+          <h1>Members of the State Intern Alumni Network</h1>
+          <div class="grid" id="members-grid"></div>
+        </section>
+      </div>
+
+      <!-- Footer -->
+      <footer id="footer">
+        <section class="split contact">
+          <section>
+            <h3>Webpage Contact</h3>
+            <p><a href="mailto:phil.rus@outlook.de">phil.rus@outlook.de</a></p>
+          </section>
+        </section>
+      </footer>
     </div>
 
-    				<!-- Footer -->
-					<footer id="footer">
-						<section class="split contact">
-							<section>
-								<h3>Webpage Contact</h3>
-								<p><a href="mailto:phil.rus@outlook.de">phil.rus@outlook.de</a></p>
-							</section>
-						</section>
-					</footer>
-
-			</div>
-    
-    <!-- Script to load member data -->
-      <script src="assets/js/MemberSourcing.js"></script>
-    	<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/MemberSourcing.js"></script>
   </body>
 </html>
