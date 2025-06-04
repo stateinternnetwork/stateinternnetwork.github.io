@@ -1,1 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>SIAN Members</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 40px;
+      background-color: #f2f2f2;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: center;
+    }
+
+    .tile {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 240px;
+      text-align: center;
+      padding: 20px;
+      transition: transform 0.2s;
+    }
+
+    .tile:hover {
+      transform: translateY(-5px);
+    }
+
+    .tile img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      margin-bottom: 15px;
+    }
+
+    .tile h3 {
+      margin: 10px 0 5px;
+      font-size: 1.1em;
+    }
+
+    .tile p {
+      margin: 2px 0;
+      font-size: 0.95em;
+      color: #555;
+    }
+
+    .tile a {
+      color: #003366;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Members of the State Intern Alumni Network</h1>
+  <div class="grid" id="members-grid">
+    <!-- Tiles will be filled by MemberSourcing.js -->
+  </div>
+
+  <script src="assets/js/MemberSourcing.js"></script>
+</body>
+</html>
 
