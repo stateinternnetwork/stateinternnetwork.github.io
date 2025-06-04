@@ -61,23 +61,35 @@
     </style>
   </head>
   <body class="is-preload">
+  <div id="wrapper" class="fade-in">
+    <!-- Header -->
+    <header id="header">
+      <a href="overview.html" class="logo">SIAN</a>
+    </header>
 
-    <!-- Nav -->
+    <!-- Navigation -->
     <nav id="nav">
       <ul class="links">
         <li><a href="index.html">Intro</a></li>
         <li><a href="overview.html">Overview</a></li>
         <li><a href="networkteam.html">Team</a></li>
-        <li class="active"><a href="networkmembers.html">Members</a></li>
+        <li class="active"><a href="networkmembers.html">Members</a></li>        
         <li><a href="contactmap.html">Contacts</a></li>
         <li><a href="networkevents.html">Events</a></li>
       </ul>
     </nav>
 
-    <!-- Header -->
-    <header id="header">
-      <a href="overview.html" class="logo">SIAN</a>
-    </header>
+    <!-- Login check & display control -->
+    <script>
+      if (sessionStorage.getItem("SIAN_loggedIn") === "true") {
+        document.body.style.display = "block";
+        setTimeout(() => {
+          if (typeof loadContacts === 'function') loadContacts();
+        }, 100);
+      } else {
+        window.location.href = "index.html";
+      }
+    </script>
 
     <!-- Member Section -->
     <div id="wrapper" class="fade-in">
