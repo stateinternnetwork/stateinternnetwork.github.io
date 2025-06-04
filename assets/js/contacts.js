@@ -1,4 +1,4 @@
-const SHEET_API_URL = 'https://script.google.com/macros/s/AKfycbxAvdMiZ-4YfiQ_afZZm91Ql6ijWn6uh_dx32gUavBn7GdB0nyQl1tq3EwHEAVljAaPpg/exec'; // Replace with your actual Web App URL
+const SHEET_API_URL = 'https://script.google.com/macros/s/AKfycbwnvD9CUrZYbK9UkiFhM41bQ720gTSBTEYRNQ7cmQO-h5t42i_jU8nrboqgXL2urtWQ/exec'; // Replace with your actual Web App URL
 
 // Initialize Leaflet map and place pins by city
 function initMap(locations) {
