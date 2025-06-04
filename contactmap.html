@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <meta charset="UTF-8">
   <title>Network Contacts</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+
+  <!-- Main site styles -->
   <link rel="stylesheet" href="assets/css/main.css" />
   <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-
-  <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
 
   <!-- DataTables CSS -->
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
 
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+
   <style>
-    body {
-      display: none;
-    }
     #map {
       height: 400px;
       width: 100%;
       margin: 20px 0;
       border: 1px solid #ccc;
     }
+
+    #form-area {
+      margin-top: 30px;
+    }
+
     #form-area input {
       display: block;
       margin: 8px 0;
@@ -31,6 +34,7 @@
       width: 100%;
       max-width: 400px;
     }
+
     #form-area button {
       padding: 8px 16px;
       background-color: #3f51b5;
@@ -38,51 +42,50 @@
       border: none;
       cursor: pointer;
     }
-    #form-area {
-      margin-top: 30px;
-    }
   </style>
 </head>
 <body class="is-preload">
-
-  <script>
-    if (sessionStorage.getItem("SIAN_loggedIn") === "true") {
-      document.body.style.display = "block";
-    } else {
-      window.location.href = "index.html";
-    }
-  </script>
-
-  <!-- Nav -->
-  <nav id="nav">
-    <ul class="links">
-      <li><a href="index.html">Intro</a></li>
-      <li><a href="overview.html">Overview</a></li>
-      <li><a href="networkteam.html">Team</a></li>
-      <li><a href="networkmembers.html">Members</a></li>
-      <li class="active"><a href="contactmap.html">Contacts</a></li>
-      <li><a href="networkevents.html">Events</a></li>
-    </ul>
-  </nav>
-
-  <!-- Wrapper -->
   <div id="wrapper" class="fade-in">
-
     <!-- Header -->
     <header id="header">
       <a href="overview.html" class="logo">SIAN</a>
     </header>
 
-    <!-- Main -->
-    <div id="main">
+    <!-- Navigation -->
+    <nav id="nav">
+      <ul class="links">
+        <li><a href="index.html">Intro</a></li>
+        <li><a href="overview.html">Overview</a></li>
+        <li><a href="networkteam.html">Team</a></li>
+        <li class="active"><a href="contactmap.html">Contacts</a></li>
+        <li><a href="networkmembers.html">Members</a></li>
+        <li><a href="networkevents.html">Events</a></li>
+      </ul>
+    </nav>
 
+    <!-- Login check & display control -->
+    <script>
+      if (sessionStorage.getItem("SIAN_loggedIn") === "true") {
+        document.body.style.display = "block";
+        setTimeout(() => {
+          if (typeof loadContacts === 'function') loadContacts();
+        }, 100);
+      } else {
+        window.location.href = "index.html";
+      }
+    </script>
+
+    <!-- Main Content -->
+    <div id="main">
       <section class="post">
         <header class="major">
-          <h1>Network Contacts</h1>
+          <h2>Network Contacts</h2>
         </header>
 
+        <!-- Map -->
         <div id="map"></div>
 
+        <!-- Contact Table -->
         <table id="contacts-table" class="display">
           <thead>
             <tr>
@@ -97,6 +100,7 @@
           <tbody></tbody>
         </table>
 
+        <!-- Add Contact Form -->
         <div id="form-area">
           <h3>Add New Contact</h3>
           <input id="Name" placeholder="Name" />
@@ -107,9 +111,7 @@
           <input id="POC" placeholder="POC" />
           <button onclick="submitContact()">Submit</button>
         </div>
-
       </section>
-
     </div>
 
     <!-- Footer -->
@@ -121,7 +123,6 @@
         </section>
       </section>
     </footer>
-
   </div>
 
   <!-- JS libraries -->
@@ -129,8 +130,15 @@
   <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
   <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
 
-  <!-- Your separate JS file -->
+  <!-- Your custom contact logic -->
   <script src="assets/js/contacts.js"></script>
 
+  <!-- Theme scripts -->
+  <script src="assets/js/jquery.scrollex.min.js"></script>
+  <script src="assets/js/jquery.scrolly.min.js"></script>
+  <script src="assets/js/browser.min.js"></script>
+  <script src="assets/js/breakpoints.min.js"></script>
+  <script src="assets/js/util.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 </html>
