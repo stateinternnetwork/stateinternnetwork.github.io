@@ -15,10 +15,8 @@
   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
 
   <style>
-    h1 {
-      text-align: center;
-      margin-top: 2em;
-      margin-bottom: 1.5em;
+    body {
+      display: none;
     }
     #map {
       height: 400px;
@@ -42,24 +40,6 @@
     }
     #form-area {
       margin-top: 30px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .container {
-      max-width: 1000px;
-      margin: auto;
-      padding: 20px;
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-    }
-    body.is-preload {
-      background-color: #f5f5f5;
-      font-family: Arial, sans-serif;
-    }
-    body {
-      display: none;
     }
   </style>
 </head>
@@ -73,35 +53,75 @@
     }
   </script>
 
-  <div class="container">
-    <h1>Network Contacts</h1>
+  <!-- Nav -->
+  <nav id="nav">
+    <ul class="links">
+      <li><a href="index.html">Intro</a></li>
+      <li><a href="overview.html">Overview</a></li>
+      <li><a href="networkteam.html">Team</a></li>
+      <li><a href="networkmembers.html">Members</a></li>
+      <li class="active"><a href="contactmap.html">Contacts</a></li>
+      <li><a href="networkevents.html">Events</a></li>
+    </ul>
+  </nav>
 
-    <div id="map"></div>
+  <!-- Wrapper -->
+  <div id="wrapper" class="fade-in">
 
-    <table id="contacts-table" class="display">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>First Name</th>
-          <th>City</th>
-          <th>Job Title</th>
-          <th>Job Category</th>
-          <th>POC</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
+    <!-- Header -->
+    <header id="header">
+      <a href="overview.html" class="logo">SIAN</a>
+    </header>
 
-    <div id="form-area">
-      <h3>Add New Contact</h3>
-      <input id="Name" placeholder="Name" />
-      <input id="First Name" placeholder="First Name" />
-      <input id="City" placeholder="City" />
-      <input id="Job Title" placeholder="Job Title" />
-      <input id="Job Category" placeholder="Job Category" />
-      <input id="POC" placeholder="POC" />
-      <button onclick="submitContact()">Submit</button>
+    <!-- Main -->
+    <div id="main">
+
+      <section class="post">
+        <header class="major">
+          <h1>Network Contacts</h1>
+        </header>
+
+        <div id="map"></div>
+
+        <table id="contacts-table" class="display">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>First Name</th>
+              <th>City</th>
+              <th>Job Title</th>
+              <th>Job Category</th>
+              <th>POC</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+
+        <div id="form-area">
+          <h3>Add New Contact</h3>
+          <input id="Name" placeholder="Name" />
+          <input id="First Name" placeholder="First Name" />
+          <input id="City" placeholder="City" />
+          <input id="Job Title" placeholder="Job Title" />
+          <input id="Job Category" placeholder="Job Category" />
+          <input id="POC" placeholder="POC" />
+          <button onclick="submitContact()">Submit</button>
+        </div>
+
+      </section>
+
     </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+      <section class="split contact">
+        <section>
+          <h3>Webpage Contact</h3>
+          <p><a href="mailto:phil.rus@outlook.de">phil.rus@outlook.de</a></p>
+        </section>
+      </section>
+    </footer>
+
   </div>
 
   <!-- JS libraries -->
