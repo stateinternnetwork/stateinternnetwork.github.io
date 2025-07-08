@@ -1,4 +1,4 @@
-const MEMBERS_API = 'https://script.google.com/macros/s/AKfycbx30OqQ6rCT2dKcKIPNkNbQTUhWkDxzsOq0CwUsnUTUeZ1SQrgov9NPOpa-eZfDbRib/exec'; // Replace with your Web App URL
+const MEMBERS_API = 'https://script.google.com/macros/s/AKfycbx30OqQ6rCT2dKcKIPNkNbQTUhWkDxzsOq0CwUsnUTUeZ1SQrgov9NPOpa-eZfDbRib/exec';
 
 fetch(MEMBERS_API)
   .then(response => response.json())
@@ -6,19 +6,8 @@ fetch(MEMBERS_API)
     const container = document.getElementById('members-grid');
 
     data.forEach(member => {
-      const fullName = `${member.Forename || ''} ${member.Surname || ''}`;
-      
-      // Handle "=IMAGE(...)" format by extracting the URL
-      let imageSrc = member.Picture || '';
-      if (imageSrc.startsWith('=IMAGE(')) {
-        const match = imageSrc.match(/"([^"]+)"/);
-        if (match && match[1]) imageSrc = match[1];
-      }
-
-      // Fallback if empty or invalid
-      if (!imageSrc || imageSrc === '#N/A') {
-        imageSrc = 'images/member.jpg';
-      }
+      const fullName = `${member.Name || ''} ${member.Surname || ''}`;
+      const imageSrc = member.Picture || 'images/member.jpg';
 
       const tile = document.createElement('div');
       tile.className = 'tile';
