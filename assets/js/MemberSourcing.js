@@ -6,7 +6,7 @@ fetch(MEMBERS_API)
     const container = document.getElementById('members-grid');
 
     data.forEach(member => {
-      const fullName = `${member.Name || ''} ${member.Surname || ''}`;
+      const fullName = `${member.Surname || ''} ${member.Name || ''}`;
       const imageSrc = member.Picture || 'images/member.jpg';
 
       const tile = document.createElement('div');
