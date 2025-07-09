@@ -6,12 +6,10 @@ fetch(MEMBERS_API)
     const container = document.getElementById('members-grid');
 
     data.forEach(member => {
-      const fullName = `${member.Surname || ''} ${member.Name || ''}`;
+      const fullName = `${member.Name || ''} ${member.Surname || ''}`;
+      let imageSrc = member.Picture?.trim() || '';
 
-      // Process image link
-      let imageSrc = member.Picture || '';
-      
-      // Convert Google Drive "file/d/..." links to "uc?export=view&id=..."
+      // Convert Google Drive "file/d/ID/view" → "uc?export=view&id=ID"
       if (imageSrc.includes("drive.google.com/file/d/")) {
         const match = imageSrc.match(/\/d\/([^/]+)\//);
         if (match && match[1]) {
@@ -19,9 +17,8 @@ fetch(MEMBERS_API)
         }
       }
 
-      // Use fallback if no image or invalid
       if (!imageSrc || imageSrc === '#N/A') {
-        imageSrc = 'images/member.jpg';  // default local image
+        imageSrc = 'images/member.jpg'; // fallback image
       }
 
       const tile = document.createElement('div');
@@ -36,6 +33,9 @@ fetch(MEMBERS_API)
       `;
 
       container.appendChild(tile);
+
+      // Log each image to debug
+      console.log("Image for", fullName, "→", imageSrc);
     });
   })
   .catch(err => {
